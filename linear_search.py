@@ -1,9 +1,12 @@
 import sys
 import time
 
+import humanize
+
 from loguru import logger
 
-from shared.command_line_args_support import parse_command_line
+from shared.command_line_args_support import base_arg_parser
+from shared.memory_usage import get_current_memory_usage
 
 
 def is_passport_expired(
@@ -32,7 +35,9 @@ def is_passport_expired(
 def main():
     logger.info("Application started")
 
-    args = parse_command_line()
+    parser = base_arg_parser()
+
+    args = parser.parse_args()
     logger.debug(f"args: {args}")
 
     while True:
@@ -55,6 +60,9 @@ def main():
         logger.info(
             f"Lookup time {round(lookup_time_ms, 3)} ms ({lookup_time_ns} ns). Is passport expired: {passport_expired}"
         )
+
+    human_readable_memory_usage = humanize.naturalsize(get_current_memory_usage())
+    logger.info(f"Used memory: {human_readable_memory_usage}")
 
     logger.info("Application finished")
 

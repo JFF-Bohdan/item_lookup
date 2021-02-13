@@ -1,7 +1,13 @@
 import argparse
 
 
-def parse_command_line():
+def base_arg_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(description="Linear search in file")
     parser.add_argument("--input-file", type=str, action="store", required=True)
-    return parser.parse_args()
+    return parser
+
+
+def sqlite_fs_parser() -> argparse.ArgumentParser:
+    parser = argparse.ArgumentParser(description="Linear search in file")
+    parser.add_argument("--input-file", type=str, action="store", required=True)
+    return parser

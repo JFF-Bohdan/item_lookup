@@ -35,7 +35,10 @@ python linear_search.py --input-file e:/tmp/ru_passports/list_of_expired_passpor
 
 assuming that file was downloaded to `e:/tmp/ru_passports/list_of_expired_passports.csv`
 
-Example output:
+To exit from application please enter empty passport series and passport number 
+or press `Ctrl-C` 
+
+Example output (pretty fast NVMe SSD used):
 
 ```
 2021-02-13 15:42:32.121 | INFO     | __main__:main:33 - Application started
@@ -59,4 +62,10 @@ It was tested with four inputs:
 - `8003,409451` - from the beginning of the file
 - `0104,167806` - somewhere in the middle of the file
 - `6009,699906` - at the end of the file
-- `1234,567890` - not available in the file
+- `1234,567890` - which is **not** available in the file
+
+Memory usage CPython 3.9:
+
+```
+2021-02-13 16:31:50.133 | INFO     | __main__:main:65 - Used memory: 28.2 MB
+```

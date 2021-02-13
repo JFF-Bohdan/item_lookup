@@ -4,6 +4,8 @@ exclude =
 	.idea,
 	__pycache__,
 	venv/*,
+	tests/*,
+	db/*
 
 max-line-length = 120
 max-complexity = 10
