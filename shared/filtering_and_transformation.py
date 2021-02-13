@@ -1,7 +1,7 @@
 from typing import Optional, Set, Tuple
 
 
-def convert_to_two_columns_line(line: str) -> Optional[Tuple[str]]:
+def convert_to_two_columns_line(line: str) -> Optional[Tuple[str, str]]:
     line = str(line).strip() if line else line
     if not line:
         return None
@@ -20,7 +20,7 @@ def is_valid_number_item(value: str, required_length: int, valid_symbols: Set[st
     return all(char in valid_symbols for char in value)
 
 
-def is_valid_format(row: Tuple[str]) -> bool:
+def is_valid_format(row: Tuple[str, str]) -> bool:
     valid_symbols = {str(index) for index in range(10)}
 
     required_lengths = [4, 6]
@@ -31,5 +31,5 @@ def is_valid_format(row: Tuple[str]) -> bool:
     return True
 
 
-def convert_tuple_of_strings_to_tuple_of_integers(row: Tuple[str]) -> Tuple[int]:
+def convert_tuple_of_strings_to_tuple_of_integers(row: Tuple[str, str]) -> Tuple[int, int]:
     return tuple(int(column) for column in row)

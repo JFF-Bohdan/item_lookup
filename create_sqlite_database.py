@@ -68,7 +68,7 @@ def main():
     logger.debug(f"Database directory: {db_dir}")
 
     if not os.path.exists(db_dir):
-        logger.info(f"Making directory '{db_dir}'")
+        logger.warning(f"Making directory '{db_dir}'")
         os.makedirs(db_dir)
 
     connection = sqlite3.connect(DATABASE_FILE)
