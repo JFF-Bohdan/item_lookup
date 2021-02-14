@@ -1,6 +1,6 @@
 import sys
 import time
-from typing import Dict, Iterator, List, Tuple
+from typing import Dict, Iterator, Tuple
 
 import humanize
 

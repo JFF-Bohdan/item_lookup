@@ -1,6 +1,6 @@
 import sys
 import time
-from typing import Dict, Iterator, List, Tuple
+from typing import Dict, Iterator, Tuple
 
 import humanize
 
@@ -34,8 +34,8 @@ class DataProcessingPipeline(object):
                 if (
                         (result[0] > 9999) or
                         (result[1] > 999999) or
-                        (f"{result[0]:04}" != row[0]) or
-                        (f"{result[1]:06}" != row[1])
+                        (str(result[0]).rjust(4, "0") != row[0]) or
+                        (str(result[1]).rjust(6, "0") != row[1])
                 ):
                     self._invalid_entries_count += 1
                     continue
