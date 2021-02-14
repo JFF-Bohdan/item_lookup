@@ -20,7 +20,7 @@ valid_entries_count = 0
 invalid_entries_count = 0
 
 
-def count_records_stat(input_file: str) -> bool:
+def count_records_stat(input_file: str):
     global invalid_entries_count
     global valid_entries_count
 
@@ -41,8 +41,6 @@ def count_records_stat(input_file: str) -> bool:
 
             _ = convert_tuple_of_strings_to_tuple_of_integers(two_columns_tuple)
             valid_entries_count += 1
-
-    return False
 
 
 def render_stat(stat_dict: Dict) -> str:
