@@ -31,7 +31,7 @@ class DataProcessingPipeline(object):
         for row in self._filter_for_valid_numbers():
             yield tuple(int(column) for column in row)
 
-    def _filter_for_valid_numbers(self) -> Iterator[List[str, str]]:
+    def _filter_for_valid_numbers(self) -> Iterator[Tuple[str, str]]:
         valid_symbols = {str(index) for index in range(10)}
 
         def is_valid_data(value: str, required_length: int) -> bool:
@@ -58,7 +58,7 @@ class DataProcessingPipeline(object):
 
             yield row
 
-    def _filter_for_lines_with_two_columns(self) -> Iterator[List[str, str]]:
+    def _filter_for_lines_with_two_columns(self) -> Iterator[Tuple[str, str]]:
         for line in self._yield_strings_from_file():
             line = str(line).strip() if line else line
             if not line:
@@ -70,7 +70,7 @@ class DataProcessingPipeline(object):
                 self._invalid_entries_count += 1
                 continue
 
-            yield split_data
+            yield tuple(split_data)
 
     def _yield_strings_from_file(self) -> Iterator[str]:
         logger.debug(f"Loading data from file '{self._file_name}'")
@@ -119,13 +119,16 @@ def main():
 
     execution_time_ns = (timestamp_end - timestamp_begin)
     execution_time_ms = execution_time_ns / 1_000_000
+    execution_time_secs = execution_time_ms / 1_000
     human_readable_memory_usage = humanize.naturalsize(get_current_memory_usage())
+    human_readable_execution_time = humanize.naturaldelta(execution_time_secs)
 
     stat_data = {
         "Valid entries count": pipeline.valid_entries_count,
         "Invalid entries count": pipeline.invalid_entries_count,
         "Execution time (ms)": round(execution_time_ms, 3),
         "Execution time (ns)": execution_time_ns,
+        "Execution time (human readable)": human_readable_execution_time,
         "Current memory usage": human_readable_memory_usage
     }
 
